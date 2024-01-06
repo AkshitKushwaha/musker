@@ -24,7 +24,7 @@ def profile(request, pk):
 
         profile = Profile.objects.get(user_id = pk)
 
-        meeps = Meep.objects.filter(user_id = pk)
+        meeps = Meep.objects.filter(user_id = pk).order_by("-created_at")
 
         # post follow-form logic
         if request.method == "POST":
