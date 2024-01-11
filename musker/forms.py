@@ -58,3 +58,17 @@ class SignUpForm(UserCreationForm):
         self.fields['password2'].widget.attrs['placeholder'] = 'Confirm Password'
         self.fields['password2'].label = ''
         self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
+
+
+
+
+
+
+
+#note:-
+        
+#In Django, the exclude option in a ModelForm is used to specify fields that should not be included in the form.
+
+#In your code, exclude = ("user",) means that the user field from the Meep model will not be included in the MeepForm. This is useful when you want to manually handle a field instead of letting the form automatically generate it.
+
+#or example, you might want to automatically set the user field to the currently logged-in user in your view or controller, rather than letting the user choose a value for this field in the form.
