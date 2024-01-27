@@ -9,11 +9,11 @@
             <div class="col-8">
 
 
-    <h1 class="text-center">Meeps!</h1>
+    <h1 class="text-center">Shared Meep!</h1>
 
     <br/><br/>
 
-    {% for meep in meeps %}
+
 
         <div class="alert alert-dark" role="alert">
             <div class="container">
@@ -39,7 +39,6 @@
                             {% else %}
                                 <a href="{% url 'meep_like' meep.id %}">Like</a>
                             {% endif %}
-                            <a href="{% url 'meep_show' meep.id %}">Share</a>
                         </small>
 
                     </div>
@@ -51,7 +50,6 @@
 
         </div>
 
-    {% endfor %}
 
 </div>
 
