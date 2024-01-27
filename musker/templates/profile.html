@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
 {% if profile %}
@@ -16,8 +18,26 @@
                 {% for meep in meeps %}
 
                   <div class="alert alert-dark" role="alert">
-                    {{ meep }}
-                  </div><br/><br/>
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-2">
+                          {% if profile.profile_image %}
+                            <img src="{{ profile.profile_image.url }}" width=50 height=50 class="rounded-circle" alt="{{ profile.user.username }}">
+                          {% else %}
+                            <img src="{% static 'images/default_profile_pic.png' %}" width=50 height=50 class="rounded-circle" alt="Profile Image">
+                          {% endif %}
+                        </div>
+                        <div class="col-10">
+
+                          <strong>{{ meep.body }}</strong><br/>
+                          <small class="text-muted">
+                            ({{ meep.created_at }}) by @{{ meep.user.username }}
+                          </small>
+                        </div><br/><br/>
+
+                        </div>
+                      </div>
+                    </div>
                 
                 {% endfor %}
 
@@ -30,7 +50,7 @@
               
               {% if profile.profile_image %}
 
-                <img src="{{ profile.profile_image.url }}"><br/><br/>
+                <img src="{{ profile.profile_image.url }}" class="rounded-circle"><br/><br/>
 
 
               {% endif %}
