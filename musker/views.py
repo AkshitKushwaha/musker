@@ -145,7 +145,7 @@ def meep_like(request, pk):
         else:
             meep.likes.add(request.user)
         
-        return redirect('home')
+        return redirect(request.META.get('HTTP_REFERER'))
 
     else:
         messages.success(request, 'login to view this page')
