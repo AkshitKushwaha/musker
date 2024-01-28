@@ -26,6 +26,7 @@
                           {% else %}
                             <img src="{% static 'images/default_profile_pic.png' %}" width=50 height=50 class="rounded-circle" alt="Profile Image">
                           {% endif %}
+
                         </div>
                         <div class="col-10">
 
@@ -60,8 +61,47 @@
 
                 <img src="{{ profile.profile_image.url }}" class="rounded-circle"><br/><br/>
 
+              {% endif %}
+
+              {% if profile.homepage_link %}
+
+                <a href="{{ profile.homepage_link }}" target="new">Website</a>
 
               {% endif %}
+
+              <br/>
+
+              {% if profile.facebook_link %}
+
+                <a href="{{ profile.facebook_link }}" target="new">Facebook</a>
+
+              {% endif %}
+
+              <br/>
+
+              {% if profile.instagram_link %}
+
+              <a href="{{ profile.instagram_link }}" target="new">Instagram</a>
+
+              {% endif %}
+
+              <br/>
+
+              {% if profile.linkedin_link %}
+
+                <a href="{{ profile.linkedin_link }}" target="new">Linkedin</a>
+
+              {% endif %}
+
+              <br/><br/>
+
+              {% if profile.profile_bio %}
+
+                {{ profile.profile_bio }}
+
+              {% endif %}
+
+              <br/><br/>
 
                 <div class="card">
                     <h5 class="card-header">
@@ -122,6 +162,8 @@
                     <a href="{% url 'update_user' %}" class="btn btn-outline-secondary">Update Profile</a>
 
                   {% endif %}
+
+                  <br/><br/>
 
             </div>
         </div>

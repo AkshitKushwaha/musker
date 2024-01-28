@@ -31,6 +31,12 @@ class Profile(models.Model):
 
     profile_image = models.ImageField(null = True, blank = True, upload_to='images/')
 
+    profile_bio = models.CharField(null=True, blank=True, max_length=500)
+    homepage_link = models.CharField(null=True, blank=True, max_length=100)
+    facebook_link = models.CharField(null=True, blank=True, max_length=100)
+    instagram_link = models.CharField(null=True, blank=True, max_length=100)
+    linkedin_link = models.CharField(null=True, blank=True, max_length=100)
+
     def __str__(self):
         return self.user.username
     

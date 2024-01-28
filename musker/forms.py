@@ -6,10 +6,15 @@ from django.contrib.auth.models import User
 #Profile extras form
 class ProfilePicForm(forms.ModelForm):
     profile_image = forms.ImageField(label="Profile Picture")
+    profile_bio = forms.CharField(label="Profile bio", widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Profile bio'}))
+    homepage_link = forms.CharField(label="Website link", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Website link'}))
+    facebook_link = forms.CharField(label="Facebook link", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Facebook link'}))
+    instagram_link = forms.CharField(label="Instagram link", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Instagram link'}))
+    linkedin_link = forms.CharField(label="Linkedin link", widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Linkedin link'}))
     
     class Meta:
         model = Profile
-        fields = ('profile_image', )
+        fields = ('profile_image', 'profile_bio', 'homepage_link', 'facebook_link', 'instagram_link', 'linkedin_link')
 
 class MeepForm(forms.ModelForm):
     body = forms.CharField(required=True, widget = forms.widgets.Textarea(
