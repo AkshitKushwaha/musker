@@ -128,11 +128,15 @@
 
                         <strong>Followed BY</strong><br/>
 
-                            {% for following in profile.followed_by.all %}
+                            {% for following in profile.followed_by.all|slice:3 %}
         
                                 <a href="{% url 'profile' following.user.id %}">@{{ following }}<br/></a>
         
                             {% endfor %}
+
+                            <br/>
+
+                            <a href="{% url 'followers' profile.user.id %}">See All...</a>
 
                       </p>
                     </div>

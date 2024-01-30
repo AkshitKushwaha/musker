@@ -63,6 +63,20 @@ def profile(request, pk):
         messages.success(request, 'login to view this page')
         return redirect('home')
     
+def followers(request, pk):
+    if request.user.is_authenticated:
+        if request.user.id == pk:
+            profiles = Profile.objects.get(user_id=pk)
+            return render(request, 'followers.html', {'profiles': profiles})
+        else:
+            messages.success(request, 'You are not authorized to view this page')
+            return redirect('home')
+    
+    else:
+        messages.success(request, 'login to view this page')
+        return redirect('home')
+    
+    
 
 def login_user(request):
     if request.method == "POST":
