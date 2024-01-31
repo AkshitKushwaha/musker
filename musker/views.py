@@ -185,3 +185,20 @@ def meep_show(request, pk):
     else:
         messages.success(request, 'Oops! maybe that meep does not exist.')
         return redirect('home')
+    
+
+def delete_meep(request, pk):
+    if request.user.is_authenticated:
+        meep = get_object_or_404(Meep, id=pk)
+        #check to see if you own that meep
+        if request.user.username == meep.user.username:
+            #delete the meep
+            meep.delete()
+            messages.success(request, 'Meep deleted!')
+            return redirect(request.META.get('HTTP_REFERER'))
+        else:
+            messages.success(request, 'Invalid Action !')
+            return redirect('home')
+    else:
+        messages.success(request, 'Login for that action.')
+        return redirect('home')
