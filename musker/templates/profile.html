@@ -44,6 +44,7 @@
 
                             {% if request.user.username == profile.user.username %}
                             <a href="{% url 'delete_meep' meep.id %}">Delete</a>
+                            <a href="{% url 'edit_meep' meep.id %}">Edit</a>
                             {% endif %}
 
                           </small>
@@ -114,7 +115,7 @@
                     </h5>
                     <div class="card-body">
                       <p class="card-text">
-                        {% for following in profile.follows.all %}
+                        {% for following in profile.follows.all|slice:3 %}
 
                             <a href="{% url 'profile' following.user.id %}">@{{ following }}<br/></a>
 
