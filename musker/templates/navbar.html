@@ -27,6 +27,9 @@
             <a class="nav-link" href="{% url 'register' %}">Register</a>
 
           {% endif %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'search' %}">Search</a>
         </ul>
 
         {% if user.is_authenticated %}

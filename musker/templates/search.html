@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <h1 class="text-center"> Search Meeps</h1>
+
+    <br/>
+
+        <form method=POST>
+
+            {% csrf_token %}
+            <input type="input" class="form-control" placeholder="What's on your mind ?" name="search">
+
+            <br/>
+
+            <div class="text-center">
+
+                <button type="submit" class="btn btn-secondary">Search</button>
+
+            </div>
+
+
+        </form>
+
+        <br/>
+
+        {% if search %}
+            <h3>
+                Showing search results for: {{ search }}
+            </h3>
+
+            <br/>
+
+            {% for meep in searched %}
+
+            <div class="alert alert-dark" role="alert">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1">
+                            {% if meep.user.profile.profile_image %}
+                            <img src="{{ meep.user.profile.profile_image.url }}" width=50 height=50 class="rounded-circle" alt="{{ profile.user.username }}">
+                          {% else %}
+                            <img src="{% static 'images/default_profile_pic.png' %}" width=50 height=50 class="rounded-circle" alt="Profile Image">
+                          {% endif %}
+                        </div>
+    
+                        <div class="col-11">
+    
+                            {{ meep.body }}<br/>
+                
+                            <small class="text-muted">
+                                {{ meep.created_at }} by @{{ meep.user.username}}
+                                - {{ meep.number_of_likes }} Likes -
+                                
+                                {% if user in meep.likes.all %}
+                                    <a href="{% url 'meep_like' meep.id %}">Unlike</a>
+                                {% else %}
+                                    <a href="{% url 'meep_like' meep.id %}">Like</a>
+                                {% endif %}
+                                <a href="{% url 'meep_show' meep.id %}">Share</a>
+                            </small>
+    
+                        </div>
+    
+            
+                    <br/><br/>
+                    </div>
+                </div>
+    
+            </div>
+    
+
+            {% endfor %}
+
+        {% endif %}
+
+
+{% endblock %}
+
+
